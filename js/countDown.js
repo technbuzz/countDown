@@ -19,7 +19,6 @@ function resetPage() {
 function pauseCountdown(event){
 	clearInterval(intervalHandle);
 	pauseButton.setAttribute("value","Resume");
-	pauseButton.disabled = true;
 }
 function tick () {
 	//grab the h1
@@ -77,7 +76,12 @@ function startCountdown () {
 	pauseButton.setAttribute("type","button");
 	pauseButton.setAttribute("value","Pause");
 	pauseButton.onclick = function () {
-		pauseCountdown();
+		if(pauseButton.value == "Pause"){
+			pauseCountdown();
+		}else if (pauseButton.value == "Resume"){
+			intervalHandle = setInterval(tick,1000);
+			pauseButton.setAttribute("value","Pause");
+		}
 	};
 	
 	//create reset button
