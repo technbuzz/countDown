@@ -1,0 +1,9 @@
+.main_wrapper{
+    width: 500px;
+    margin: auto;
+    text-align: center;
+}
+#time{
+    font-family: unifrakturcook;
+    font-size:4em;
+}
