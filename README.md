@@ -1,4 +1,4 @@
-countDown
+Count Down
 =========
 
 A pure Javascript Count Down
