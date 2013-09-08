@@ -4,38 +4,22 @@ var pauseButton;
 var resetButton;
 var timeDisplay;
 
-function resetCountdown(){
+function resetPage() {
+    document.getElementById('inputArea').style.display = "block";
+    document.getElementById('time').style.color = "black";
 	if(secondsRemaining!==0){
 		secondsRemaining = 0;
 		clearInterval(intervalHandle);
 		document.getElementById('main').removeChild(pauseButton);
 		document.getElementById('main').removeChild(resetButton);
 		document.getElementById("time").innerHTML = "0:00";
-		document.getElementById('inputArea').style.display = "block";
-    	document.getElementById('time').style.color = "black";
+		
 	}
 }
-
-function resetPage() {
-    document.getElementById('inputArea').style.display = "block";
-    document.getElementById('time').style.color = "black";
-	document.getElementById('main').removeChild(pauseButton);
-	document.getElementById('main').removeChild(resetButton);
-	
-}
-function resumeCountdown(){
-	tick();
-}
-
 function pauseCountdown(event){
 	clearInterval(intervalHandle);
 	pauseButton.setAttribute("value","Resume");
-	
-//	document.getElementById('main').removeChild(pauseButton);
-//	var resumeButton = document.createElement('input');
-//	resumeButton.setAttribute("type","button");
-//	resumeButton.setAttribute("value","Resume");
-//	document.getElementById('main').appendChild(resumeButton);
+	pauseButton.disabled = true;
 }
 function tick () {
 	//grab the h1
@@ -93,12 +77,7 @@ function startCountdown () {
 	pauseButton.setAttribute("type","button");
 	pauseButton.setAttribute("value","Pause");
 	pauseButton.onclick = function () {
-		if(pauseButton.value == "Resume"){
-			intervalHandle = setInterval(tick,1000);
-			pauseButton.setAttribute("value","Pause");
-		}else if(pauseButton.value == "Pause"){
-			pauseCountdown();
-		}
+		pauseCountdown();
 	};
 	
 	//create reset button
@@ -106,7 +85,7 @@ function startCountdown () {
 	resetButton.setAttribute("type","button");
 	resetButton.setAttribute("value","Reset");
 	resetButton.onclick=function(){
-		resetCountdown();
+		resetPage();
 	}
 	document.getElementById("main").appendChild(pauseButton);
 	document.getElementById("main").appendChild(resetButton);
